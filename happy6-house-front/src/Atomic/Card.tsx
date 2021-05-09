@@ -4,87 +4,85 @@ import Header from './Header';
 import { FaComments } from 'react-icons/fa';
 
 
-const StyledImg = styled.img`
+const SUserThumbnail = styled.img`
     position:absolute;
     bottom:0;
     right:0;
     width:50%;
     transition:transform 0.3s;
-
 `
 
-const StyledCard = styled.div`
-
+const SCardContainer = styled.div`
     position:relative;
+    margin: 1rem;
+    overflow:hidden;
+    height:300px;
+    z-index:1;
     box-sizing:border-box;
     padding:20px 20px;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     background: #fff;
-    margin: 1rem;
-    position: relative;
-    overflow:hidden;
-    height:300px;
     transition : box-shadow 0.5s;
-    z-index:1;
     color:#4e5968;
-
     &:hover {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
 
-    &:hover ${StyledImg} {
+    &:hover ${SUserThumbnail} {
         transform: scale(1.1);
     }
-`
+    `
 
-const StyledDiv = styled.div`
+const SNameGroup = styled.div`
     position:absolute;
     bottom:20px;
     left:20px;
     z-index:2;
 `
-const StyledFlex = styled.div`
-    display:flex;
-    align-items:center;
-    font-weight:normal;
+const SSmallGreyText = styled.div`
     color:#b0b8c1;
     size:0.8rem;
-    font-weight:normal;
+`
+
+const SFlex = styled.div`
+    display:flex;
+    align-items:center;
 `
 
 export interface CardProps {
     /** 게시글 타이틀 */
-    subject: string;
+    title: string;
     /** 게시글 작성자 실이름. */
-    author: string;
+    realname: string;
     /** 게시글 작성자 닉네임 */
     nickname: string;
-    /** 카드의 내용 부분 */
-    content : string;
     /** 카드에 들어갈 이미지 */
     imgSrc?:string;
-
+    /** 카드 작성 날짜 */
+    date?: string;
+    /** 카드 댓글 개수 */
+    comment?: number;
 }
 
 const Card = ( props : CardProps ) => {
-    const { subject, content, imgSrc} = props;
+    const { title, realname, nickname, imgSrc, comment} = props;
     return (
     <>  
-        <StyledCard>
-            <Header size={"medium"} text={"취업에 쓸만한 기술블로그 정리"}/>
-            <StyledFlex>
-
-            <FaComments></FaComments> 
-            <div>&nbsp;2</div>
-            </StyledFlex>
-            
-            <StyledDiv>
-            <strong>SSAFY</strong><br/>
-            김싸피 
-            </StyledDiv>
-            <StyledImg src={imgSrc}></StyledImg>
-        </StyledCard>
+        <SCardContainer>
+                <Header size={"medium"} text={title}/>
+                <SSmallGreyText>
+                    <SFlex>
+                        <FaComments/> 
+                        <div>&nbsp;{comment}</div>
+                    </SFlex>
+                </SSmallGreyText>
+                <SNameGroup>
+                    <strong>{realname}</strong><br/>
+                    {nickname}
+                </SNameGroup>
+                <SUserThumbnail src={imgSrc}></SUserThumbnail>
+        </SCardContainer>
     </>)
 
 }
