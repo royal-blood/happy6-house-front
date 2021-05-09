@@ -53,14 +53,22 @@ const StyledFlex = styled.div`
     font-weight:normal;
 `
 
-interface CardProps {
-    subject: string
-    text : string;
-    imgSrc:string;
+export interface CardProps {
+    /** 게시글 타이틀 */
+    subject: string;
+    /** 게시글 작성자 실이름. */
+    author: string;
+    /** 게시글 작성자 닉네임 */
+    nickname: string;
+    /** 카드의 내용 부분 */
+    content : string;
+    /** 카드에 들어갈 이미지 */
+    imgSrc?:string;
+
 }
 
 const Card = ( props : CardProps ) => {
-    const { subject, text, imgSrc} = props;
+    const { subject, content, imgSrc} = props;
     return (
     <>  
         <StyledCard>

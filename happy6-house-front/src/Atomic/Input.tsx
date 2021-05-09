@@ -36,10 +36,6 @@ const StyledInput = styled.input`
     height: 100%;
 `
 
-const StyledTemp = styled.div`
-    padding:15px;
-`
-
 
 
 export interface InputProps {

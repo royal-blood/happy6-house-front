@@ -64,13 +64,7 @@ function App() {
       <strong>6반 학생들이 남긴 방명록을 확인해보세요.</strong>
     </StyledTemp>
       <Grid>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./you.png"}/>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./iu.png"}/>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./iu.png"}/>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./iu.png"}/>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./iu.png"}/>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./iu.png"}/>
-      <Card text={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./iu.png"}/>
+      <Card author={"author"} nickname={"nickname"} content={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./you.png"}/>
     </Grid>
     <BodyWrapper>
       <Body
