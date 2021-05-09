@@ -38,7 +38,6 @@ const StyledInput = styled.input`
 
 
 
-
 export interface InputProps {
     placeholder?: string;
     id? : string;
