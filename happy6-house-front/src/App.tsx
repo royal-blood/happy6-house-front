@@ -6,7 +6,8 @@ import React from "react";
 // import InputLabel from "./Atomic/InputGroup";
 // import Lottie from "react-lottie";
 import login from "./login.json"
-import Board from "./page/Board/index";
+// import Board from "./page/Board/index";
+import Login from "./Pages/Login";
 
 // const BodyWrapper = styled.div`
 //   display: flex;
@@ -53,7 +54,8 @@ function App() {
   // }
 
   return (
-    <Board/>
+    <Login/>
+    // <Board/>
     // <Board>
     // <StyledTemp>
     // <Header size="big" text="방명록"/>
