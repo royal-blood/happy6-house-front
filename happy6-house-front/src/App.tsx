@@ -5,9 +5,17 @@ import React from "react";
 // import InputGroup from "./Atomic/InputGroup";
 // import InputLabel from "./Atomic/InputGroup";
 // import Lottie from "react-lottie";
-import login from "./login.json"
 // import Board from "./page/Board/index";
 import Login from "./Pages/Login";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Board from "./Pages/Board";
+import QuoteBoard from "./Pages/QuoteBoard/QuoteBoard";
 
 // const BodyWrapper = styled.div`
 //   display: flex;
@@ -54,7 +62,19 @@ function App() {
   // }
 
   return (
-    <Login/>
+    <Router>
+      <Switch>
+          <Route path="/login">
+            <Login/>
+          </Route>
+          <Route path="/board">
+            <Board/>
+          </Route>
+          <Route path="/quoteboard">
+            <QuoteBoard/>
+          </Route>
+      </Switch>
+    </Router>
     // <Board/>
     // <Board>
     // <StyledTemp>
