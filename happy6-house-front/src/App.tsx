@@ -52,17 +52,23 @@ import QuoteBoard from "./Pages/QuoteBoard/QuoteBoard";
 
 
 function App() {
-  // const defaultOptions = {
-  //   loop: false,
-  //   autoplay: false,
-  //   animationData: login,
-  //   rendererSettings: {
-  //     preserveAspectRatio: "xMidYMid slice"
-  //   }
-  // }
 
   return (
     <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/board">board</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/quoteboard">QuoteBoard</Link>
+            </li>
+          </ul>
+        </nav>
+
       <Switch>
           <Route path="/login">
             <Login/>
