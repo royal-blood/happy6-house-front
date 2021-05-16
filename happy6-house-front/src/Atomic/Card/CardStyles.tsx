@@ -5,7 +5,6 @@ export default {
         position:relative;
         margin: 1rem;
         overflow:hidden;
-        height:300px;
         z-index:1;
         box-sizing:border-box;
         padding:20px 20px;
@@ -17,5 +16,7 @@ export default {
         &:hover {
             box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         }
-    `
-    }
+    `,
+    
+
+}
