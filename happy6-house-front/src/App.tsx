@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import Board from "./Pages/Board";
 import QuoteBoard from "./Pages/QuoteBoard/QuoteBoard";
+import AuthRoute from "./AuthRoute";
 
 // const BodyWrapper = styled.div`
 //   display: flex;
@@ -53,6 +54,7 @@ import QuoteBoard from "./Pages/QuoteBoard/QuoteBoard";
 
 function App() {
 
+
   return (
     <Router>
         <nav>
@@ -73,9 +75,11 @@ function App() {
           <Route path="/login">
             <Login/>
           </Route>
-          <Route path="/board">
-            <Board/>
-          </Route>
+          <AuthRoute
+            path="/board"
+            render={() => <Board></Board>}
+            authenticated={false}
+          />
           <Route path="/quoteboard">
             <QuoteBoard/>
           </Route>
