@@ -67,14 +67,15 @@ interface ButtonProps {
     text : string;
     isSelected? : boolean;
     isLoading? : boolean;
+    onClicked?: () => void;
 }
 
 
 const Button = ( props : ButtonProps) => {
-    const { text, isLoading } = props;
+    const { text, isLoading, onClicked} = props;
     return (
     <>
-      <StyledButton isLoading={isLoading} disabled={isLoading}>
+      <StyledButton isLoading={isLoading} disabled={isLoading} onClick={onClicked}>
         { text }
       </StyledButton>
     </>)

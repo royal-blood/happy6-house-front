@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
-import Header from './Header';
+import Header from '../Header';
 import { FaComments } from 'react-icons/fa';
+import Card from './Card';
 
 
 const SUserThumbnail = styled.img`
@@ -50,7 +51,7 @@ const SFlex = styled.div`
     align-items:center;
 `
 
-export interface CardProps {
+export type CardOptions = {
     /** 게시글 타이틀 */
     title: string;
     /** 게시글 작성자 실이름. */
@@ -65,11 +66,17 @@ export interface CardProps {
     comment?: number;
 }
 
-const Card = ( props : CardProps ) => {
-    const { title, realname, nickname, imgSrc, comment} = props;
+export interface CardProps {
+    options : CardOptions;
+    onClicked? : () => void;
+}
+
+const BoardCard = ( props : CardProps ) => {
+    const { title, realname, nickname, imgSrc, comment} = props.options;
+    const { onClicked } = props;
     return (
     <>  
-        <SCardContainer>
+        <Card onClicked={onClicked}>
                 <Header size={"medium"} text={title}/>
                 <SSmallGreyText>
                     <SFlex>
@@ -82,9 +89,9 @@ const Card = ( props : CardProps ) => {
                     {nickname}
                 </SNameGroup>
                 <SUserThumbnail src={imgSrc}></SUserThumbnail>
-        </SCardContainer>
+        </Card>
     </>)
 
 }
 
-export default Card;
+export default BoardCard;

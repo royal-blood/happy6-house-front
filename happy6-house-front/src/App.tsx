@@ -5,8 +5,18 @@ import React from "react";
 // import InputGroup from "./Atomic/InputGroup";
 // import InputLabel from "./Atomic/InputGroup";
 // import Lottie from "react-lottie";
-import login from "./login.json"
-import Board from "./page/Board/index";
+// import Board from "./page/Board/index";
+import Login from "./Pages/Login";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Board from "./Pages/Board";
+import QuoteBoard from "./Pages/QuoteBoard/QuoteBoard";
+import AuthRoute from "./AuthRoute";
 
 // const BodyWrapper = styled.div`
 //   display: flex;
@@ -43,17 +53,39 @@ import Board from "./page/Board/index";
 
 
 function App() {
-  // const defaultOptions = {
-  //   loop: false,
-  //   autoplay: false,
-  //   animationData: login,
-  //   rendererSettings: {
-  //     preserveAspectRatio: "xMidYMid slice"
-  //   }
-  // }
+
 
   return (
-    <Board/>
+    <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/board">board</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/quoteboard">QuoteBoard</Link>
+            </li>
+          </ul>
+        </nav>
+
+      <Switch>
+          <Route path="/login">
+            <Login/>
+          </Route>
+          <AuthRoute
+            path="/board"
+            render={() => <Board></Board>}
+            authenticated={false}
+          />
+          <Route path="/quoteboard">
+            <QuoteBoard/>
+          </Route>
+      </Switch>
+    </Router>
+    // <Board/>
     // <Board>
     // <StyledTemp>
     // <Header size="big" text="방명록"/>
