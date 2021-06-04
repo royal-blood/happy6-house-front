@@ -1,11 +1,4 @@
 import React from "react";
-// import styled from "styled-components";
-// import Button from "./Atomic/Button";
-// import Input from "./Atomic/Input";
-// import InputGroup from "./Atomic/InputGroup";
-// import InputLabel from "./Atomic/InputGroup";
-// import Lottie from "react-lottie";
-// import Board from "./page/Board/index";
 import Login from "./Pages/Login";
 
 import {
@@ -17,102 +10,128 @@ import {
 import Board from "./Pages/Board";
 import QuoteBoard from "./Pages/QuoteBoard/QuoteBoard";
 import AuthRoute from "./AuthRoute";
-
-// const BodyWrapper = styled.div`
-//   display: flex;
-//   align-items: center;
-//   height:100vh;
-// `;
-
-// const Body = styled.div`
-//   display:flex;
-//   flex-direction:column;
-//   width:600px;
-//   height:400px;
-//   margin:auto;
-//   padding: 0 20px;
-// `
-
-// const LottieWrapper = styled.div`
-//   margin:-40px;
-// `
-
-// const Margin = styled.div`
-//   height:20px;
-// `
-
-// const Grid = styled.div`
-//   display:grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr;
-// `
-// const StyledTemp = styled.div`
-//     padding:15px;
-//     color:#4e5968;
-// `
+import styled from "styled-components";
+import Home from "./Home/Home";
+import Photo from "./Photo/Photo";
+import { useEffect } from "react";
+import { useRef } from "react";
+import YouTube, { Options } from "react-youtube";
+import NavButtons from "./NavButton/NavButtons";
 
 
+const BackgroundImage = styled.div`
+  background: url(/pwin_back.gif);
+  height:100vh;
+`
 
+const Container = styled.div`
+  box-sizing:border-box;
+  background: #08B2D8;
+  width:70%;
+  height:80%;
+  border-radius:8px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform : translate(-50%, -50%);
+  border: 1px solid black;
+  padding:32px;
+`
+
+const Dash = styled.div`
+  box-sizing:border-box;
+  width:100%;
+  height:100%;
+  padding:5px;
+  border-radius:8px;
+  border: 1px dashed white;
+`
+
+const Test = styled.div`
+position:relative;
+box-sizing:border-box;
+width:100%;
+height:100%;
+background:#F0F0F0;
+border-radius:8px;
+border: 1px solid black;
+padding:5px;
+display:flex;
+flex-direction:column;
+`
+
+const Header = styled.div`
+display:flex;
+align-items:flex-end;
+max-height:30px;
+min-height:30px;
+`
+const Left = styled.div`
+max-width:200px;
+min-width:200px;
+`
+
+const Right = styled.div`
+overflow:scroll;
+flex:1;
+box-sizing:border-box;
+height:100%;
+`
 function App() {
+  const opts: Options = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      "fs": 1,
+      autoplay: 1,
+    },
+  };
 
+
+
+  // export interface Options {
+  //   height?: string;
+  //   width?: string;
+  //   host?: string;
+  //   playerVars?: PlayerVars;
+  // }
+  //  /* font-family: 'GF_GuardianAngel_12px'; */
 
   return (
-    <Router>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/board">board</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/quoteboard">QuoteBoard</Link>
-            </li>
-          </ul>
-        </nav>
+    <BackgroundImage>
+      {/* <YouTube videoId={`2g811Eo7K8U`} opts={opts}/> */}
+      {/* <audio src="/freestyle.mp3" ref={ref}/>  */}
+      <Container>
+        <Dash>
+          <Test>
+            <Router>
+              <NavButtons />
+              <Header>
+                <Left style={{ textAlign: 'center', padding: '0 16px', fontFamily: "GF_GuardianAngel_12px" }}><span>TODAY 12 | TOTAL 120 </span></Left>
+                <Right style={{ fontFamily: 'none', height: '100%', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}><span style={{ marginRight: 'auto', fontSize: "1.3rem", fontWeight: "bolder", color: "#272782" }}>서울 6반의 미니홈피</span> <span style={{ fontSize: '9px' }}> http://ssafy.com/seoul/6</span> </Right>
+              </Header>
+              <Switch>
+                <Route path={"/photo"}>
+                  <Photo />
+                </Route>
+                <Route path={["/", "/home"]}>
+                  <Home />
+                </Route>
+                {/* <AuthRoute
+                path="/board"
+                render={() => <Board></Board>}
+                authenticated={false}
+              /> */}
+                {/* <Route path="/quoteboard">
+                <QuoteBoard />
+              </Route> */}
+              </Switch>
+            </Router>
+          </Test>
+        </Dash>
+      </Container>
 
-      <Switch>
-          <Route path="/login">
-            <Login/>
-          </Route>
-          <AuthRoute
-            path="/board"
-            render={() => <Board></Board>}
-            authenticated={false}
-          />
-          <Route path="/quoteboard">
-            <QuoteBoard/>
-          </Route>
-      </Switch>
-    </Router>
-    // <Board/>
-    // <Board>
-    // <StyledTemp>
-    // <Header size="big" text="방명록"/>
-    //   <strong>6반 학생들이 남긴 방명록을 확인해보세요.</strong>
-    // </StyledTemp>
-    //   <Grid>
-    //   <Card author={"author"} nickname={"nickname"} content={"abc"} subject={"토스 데이터의 흐름과 활용"} imgSrc={"./you.png"}/>
-    // </Grid>
-    // <BodyWrapper>
-    //   <Body
-    //   >
-    //     <LottieWrapper>
-    //       <Lottie 
-    //         isStopped={true}
-    //         options={defaultOptions}
-    //         // isClickToPauseDisabled={true}
-    //         height={200} 
-    //         width={200}
-    //         />
-    //     </LottieWrapper>
-    //     <InputGroup id="id" text="아이디" isRequired={true}/>
-    //     <InputGroup type={"password"} id="password" text="비밀번호" isRequired={true}/>
-    //     <Margin/>
-    //     <Button text="로그인하기" isLoading={false}/>
-    //   </Body>
-    // </BodyWrapper>
-    // </Board>
+    </BackgroundImage>
   );
 }
 export default App;
