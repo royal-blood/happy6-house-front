@@ -1,5 +1,4 @@
 import React from "react";
-import Login from "./Pages/Login";
 
 import {
   BrowserRouter as Router,
@@ -17,6 +16,8 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import YouTube, { Options } from "react-youtube";
 import NavButtons from "./NavButton/NavButtons";
+import Login from "./Login/Login";
+import Register from "./Login/Register";
 
 
 const BackgroundImage = styled.div`
@@ -98,40 +99,53 @@ function App() {
   //  /* font-family: 'GF_GuardianAngel_12px'; */
 
   return (
-    <BackgroundImage>
-      {/* <YouTube videoId={`2g811Eo7K8U`} opts={opts}/> */}
-      {/* <audio src="/freestyle.mp3" ref={ref}/>  */}
-      <Container>
-        <Dash>
-          <Test>
-            <Router>
-              <NavButtons />
-              <Header>
-                <Left style={{ textAlign: 'center', padding: '0 16px', fontFamily: "GF_GuardianAngel_12px" }}><span>TODAY 12 | TOTAL 120 </span></Left>
-                <Right style={{ fontFamily: 'none', height: '100%', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}><span style={{ marginRight: 'auto', fontSize: "1.3rem", fontWeight: "bolder", color: "#272782" }}>서울 6반의 미니홈피</span> <span style={{ fontSize: '9px' }}> http://ssafy.com/seoul/6</span> </Right>
-              </Header>
-              <Switch>
-                <Route path={"/photo"}>
-                  <Photo />
-                </Route>
-                <Route path={["/", "/home"]}>
-                  <Home />
-                </Route>
-                {/* <AuthRoute
+    <>
+      <Router>
+        <BackgroundImage>
+        <Switch>
+          <Route path="/login" exact>
+            <Login/>
+          </Route>
+          <Route path="/register" exact>
+            <Register/>
+          </Route>
+
+
+          {/* <YouTube videoId={`2g811Eo7K8U`} opts={opts}/> */}
+          {/* <audio src="/freestyle.mp3" ref={ref}/>  */}
+          <Container>
+            <Dash>
+              <Test>
+                <Router>
+                  <NavButtons />
+                  <Header>
+                    <Left style={{ textAlign: 'center', padding: '0 16px', fontFamily: "GF_GuardianAngel_12px" }}><span>TODAY 12 | TOTAL 120 </span></Left>
+                    <Right style={{ fontFamily: 'none', height: '100%', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}><span style={{ marginRight: 'auto', fontSize: "1.3rem", fontWeight: "bolder", color: "#272782" }}>서울 6반의 미니홈피</span> <span style={{ fontSize: '9px' }}> http://ssafy.com/seoul/6</span> </Right>
+                  </Header>
+                  <Switch>
+                    <Route path={"/photo"}>
+                      <Photo />
+                    </Route>
+                    <Route path={["/", "/home"]}>
+                      <Home />
+                    </Route>
+                    {/* <AuthRoute
                 path="/board"
                 render={() => <Board></Board>}
                 authenticated={false}
               /> */}
-                {/* <Route path="/quoteboard">
+                    {/* <Route path="/quoteboard">
                 <QuoteBoard />
               </Route> */}
-              </Switch>
-            </Router>
-          </Test>
-        </Dash>
-      </Container>
-
-    </BackgroundImage>
+                  </Switch>
+                </Router>
+              </Test>
+            </Dash>
+          </Container>
+          </Switch>
+        </BackgroundImage>
+      </Router>
+    </>
   );
 }
 export default App;

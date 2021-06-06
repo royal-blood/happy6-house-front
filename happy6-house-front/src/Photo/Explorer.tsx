@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import folder from './folder.gif';
 
 const Container = styled.div`
 box-sizing:border-box;
@@ -26,7 +27,6 @@ const Row = styled.div`
   align-items:center;
   margin-bottom:7px;
   & span {
-    margin-left:8px;
   }
   color : #282782;
 `
@@ -40,11 +40,11 @@ const Explorer = () => {
         <hr/>
       </Header>
       <Row>
-      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style={{fill:"#F7E01E", stroke:"#F0F0F0"}}><path d="M2.165,19.551C2.351,19.831,2.664,20,3,20h15c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944 C21.649,11.169,21.336,11,21,11h-1V8c0-1.103-0.897-2-2-2h-6.655L8.789,4H4C2.897,4,2,4.897,2,6v13h0.007 C2.007,19.192,2.056,19.385,2.165,19.551z M18,8v3H6c-0.4,0-0.762,0.238-0.919,0.606L4,14.129V8h6.655H11H18z"></path></svg>
+        <img src={folder}></img>
         <span>주간일보</span>
       </Row>
       <Row>
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style={{fill:"#F7E01E", stroke:"#F0F0F0"}}><path d="M2.165,19.551C2.351,19.831,2.664,20,3,20h15c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944 C21.649,11.169,21.336,11,21,11h-1V8c0-1.103-0.897-2-2-2h-6.655L8.789,4H4C2.897,4,2,4.897,2,6v13h0.007 C2.007,19.192,2.056,19.385,2.165,19.551z M18,8v3H6c-0.4,0-0.762,0.238-0.919,0.606L4,14.129V8h6.655H11H18z"></path></svg>
+        <img src={folder}></img>
         <span>자유게시판</span>
       </Row>
     </Container>

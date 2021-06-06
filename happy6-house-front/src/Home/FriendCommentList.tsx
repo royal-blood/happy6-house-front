@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 const Hr = styled.hr` 
@@ -17,13 +18,42 @@ const FLEX = styled.div`
   align-items:center;
   margin-top:8px;
 `
+function useShortComment() {
+  // const { isLoading, error, mutate } = useMutation(() => {
+  //   return fetch(`http://localhost:3001/posts/comments/${id}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8'
+  //     }, body: JSON.stringify({
+  //       author: "김만옥",
+  //       comment: input,
+  //     })
+  //   }).then(res => res.json)
+  // }, {
+  //   onSuccess: () => queryClient.invalidateQueries('posts')
+  // })
 
+}
 
+interface ShortComment { 
+  nickname: string
+  author : string,
+  comment : string,
+  createdDate : string,
+}
 const FriendCommentList = () => {
-  const list = [{ comment: "너무 즐거웠고 감사했습니다! 화이팅~!", author: "김김", nickname: "용가리"},{ comment: "너무 즐거웠고 감사했습니다! 화이팅~!", author: "김김", nickname: "용가리"}, { comment: "너무 즐거웠고 감사했습니다! 화이팅~!", author: "김김", nickname: "용가리"},]
+
+  const { isLoading, error, data } = useQuery('shortcomment', () => {
+    return fetch('http://localhost:3001/shortcomment').then(res => res.json() as Promise<{ data : ShortComment[]}>)
+  });
+
+
+  if (isLoading) return <div>'Loading...'</div>
+  if (error) return <div>'An error has occurred: ' + error;</div>
   return (
     <div>
-      { list.map((value, index) => {
+      { data?.data.map((value, index) => {
+        console.log(value);
         return (
           <>
             <FLEX key={index}>-&nbsp;<span>{value.comment} &nbsp; </span> <Span> ( {value.nickname} <span style={{color:"#262782"}}> {value.author} </span> ) </Span> </FLEX>

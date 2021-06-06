@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import l_ok from './l_ok.gif';
+import { Comment } from './Comment';
+import { useCallback, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Background = styled.div`
   box-sizing:border-box;
@@ -48,35 +52,67 @@ const InputGroup = styled.div`
   }
 `
 
-const CommentArea = () => {
-  return (<Background>
-    <CommentGroup>
-      <span>김만옥</span>
-      <span> : 정말 멋집니다 수고하셨습니다!</span>
-      <span>&nbsp;(2021-01-05)</span>
-    </CommentGroup>
-    <CommentGroup>
-      <span>김만옥</span>
-      <span> : 정말 멋집니다 수고하셨습니다!</span>
-      <span>&nbsp;(2021-01-05)</span>
-    </CommentGroup>
-    <CommentGroup>
-      <span>김만옥</span>
-      <span> : 정말 멋집니다 수고하셨습니다!</span>
-      <span>&nbsp;(2021-01-05)</span>
-    </CommentGroup>
-    <CommentGroup>
-      <span>김만옥</span>
-      <span> : 정말 멋집니다 수고하셨습니다!</span>
-      <span>&nbsp;(2021-01-05)</span>
-    </CommentGroup>
+interface CommentAreaProps {
+  comments: Comment[];
+  id: string
+}
 
-    <InputGroup>
-      <span>댓글 &nbsp;</span>
-      <input/>
-      <button>확인</button>
-    </InputGroup>
-  </Background>)
+
+function useCommentManager(id: string) {
+  
+  const [input, setInput] = useState('');
+  const queryClient = useQueryClient();
+  const { isLoading, error, mutate } = useMutation(() => {
+    return fetch(`http://localhost:3001/posts/comments/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }, body: JSON.stringify({
+        author: "김만옥",
+        comment: input,
+      })
+    }).then(res => res.json)
+  }, {
+    onSuccess: () => queryClient.invalidateQueries('posts')
+  })
+
+  const updatar = useCallback(() => {
+    return mutate();
+  }, [id]);
+
+  return {
+    query: { isLoading, error },
+    updatar,
+    input: { input, setInput }
+  }
+}
+const CommentArea = ({ comments, id }: CommentAreaProps) => {
+
+  const { query: { isLoading, error }, updatar, input: { input, setInput } } = useCommentManager(id);
+
+
+  if (isLoading) return <div>loading..</div>;
+  if (error) return <div>error..</div>;
+
+  return (
+    <Background>
+      {comments.map((value, index) => {
+        return (
+          <CommentGroup key={index}>
+            <span>{value.author}</span>
+            <span>: {value.comment}</span>
+            <span>({value.createdDate})</span>
+          </CommentGroup>
+        )
+      })}
+
+      <InputGroup>
+        <span>댓글 &nbsp;</span>
+        <input onChange={(e) => setInput(e.currentTarget.value)} value={input} />
+        <img src={l_ok} onClick={updatar}></img>
+      </InputGroup>
+    </Background>
+  )
 }
 
 export default CommentArea;

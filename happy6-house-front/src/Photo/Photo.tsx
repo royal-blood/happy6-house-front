@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Content from "./Content"
+import Contents from "./Contents"
 import Explorer from "./Explorer"
 
 const Body = styled.div`
@@ -47,7 +47,7 @@ const Photo = () => {
     </Left>
     <Right style={{ padding: '8px' }}>
       <ContentContainer>
-        <Content></Content>
+        <Contents/>
       </ContentContainer>
     </Right>
   </Body>)

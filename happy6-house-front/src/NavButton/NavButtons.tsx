@@ -41,11 +41,11 @@ const RightNavButtons = styled.div`
 `
 
 type Pages = "home"|"photo"
-function useNavButton() {
 
+function useNavButton() {
+  
   const history = useHistory();
   const location = useLocation();
-
   const [ current, setCurrent ] = useState<Pages>("home");
 
   useEffect( () => {

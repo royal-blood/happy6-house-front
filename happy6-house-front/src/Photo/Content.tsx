@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import CommentArea from "./CommentArea";
+import styled from "styled-components"
+import CommentArea from "./CommentArea"
+import {Comment} from './Comment';
 
 const Header = styled.div`
   height: 26px;
@@ -31,19 +31,26 @@ const SmallText = styled.span`
   margin-left:5px;
 `
 
-const Content = () => {
-  return(
-    <div>
-      <Header>[스크랩] 안녕하세요</Header>
-      <Meta>
-        <AuthorText>김만옥</AuthorText>
-        <SmallText>2020.05.21</SmallText>
-        <SmallText>스크랩 : 0</SmallText>
-      </Meta>
-      <img src="/test.png" width="100%"/>
-      <CommentArea/>
+interface ContentProps {
+  id : string,
+  title : string,
+  imageSrc : string,
+  author : string,
+  createdDate : string,
+  comments : Comment[]
+}
 
-    </div>
+const Content = ({ id, title, imageSrc, author, createdDate, comments } : ContentProps) => {
+  return (
+    <>
+      <Header>{title}</Header>
+      <Meta>
+        <AuthorText>{author}</AuthorText>
+        <SmallText>2020</SmallText>
+      </Meta>
+      <img src={`http://localhost:3001/${imageSrc}`} width="100%"></img>
+      <CommentArea comments={comments} id={id}></CommentArea>
+    </>
   )
 }
 
